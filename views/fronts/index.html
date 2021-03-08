@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>恒达CMDB</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>主机名</th>
+                    <th>IP</th>
+                    <th>起始时间</th>
+                    <th>截至时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ range .users }}
+                    <tr>
+                        <td>{{ .Name }}</td>
+                        <td>{{ if .Sex }}男{{ else }}女{{ end }}</td>
+                        <td>{{ .Addr }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning">编辑</a>
+                            <a class="btn btn-sm btn-danger" href="/user/delete/?id={{ .ID }}">删除</a>
+                        </td>
+                    </tr>
+                {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
