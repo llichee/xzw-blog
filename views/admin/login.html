@@ -48,9 +48,11 @@
                         </div>
 
                         <div class="layui-form-item" style="float: right; margin-right: 42px;">
-
-                            <input type="checkbox" name="is_top" {{if .post.IsTop}} checked {{end}} value="1"
-                                   title="记住密码">
+                            <dd>验证码: <input id="verify" type="text" name="captcha">
+                                {{create_captcha}}
+                            </dd>
+{{/*                            <input type="checkbox" name="is_top" {{if .post.IsTop}} checked {{end}} value="1"*/}}
+{{/*                                   title="记住密码">*/}}
 
                         </div>
 
