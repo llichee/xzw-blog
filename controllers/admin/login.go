@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/utils/captcha"
 )
@@ -17,11 +16,20 @@ func init() {
 }
 
 type LoginController struct {
-	beego.Controller
+	BaseController
 }
 
 func (c *LoginController) Login() {
 	c.TplName = "admin/login.html"
+}
+
+func (c *LoginController) DoLogin() {
+	flag := cpt.VerifyReq(c.Ctx.Request)
+	if flag {
+		c.Success("验证码正确", "/admin/main")
+	} else {
+		c.Error("验证码错误", "/admin/login")
+	}
 }
 
 func (c *LoginController) Form() {

@@ -14,7 +14,8 @@ func init() {
 					fmt.Println("中间件，匹配路由之前执行，可以添加登录验证")
 				}),
 				beego.NSRouter("/login", &admin.LoginController{},"get:Login"),
-				beego.NSRouter("/form", &admin.ManageController{},"get:Form"),
+			beego.NSRouter("/login/dologin", &admin.LoginController{},"post:DoLogin"),
+			beego.NSRouter("/form", &admin.ManageController{},"get:Form"),
 				beego.NSRouter("/category", &admin.ManageController{},"get:Category"),
 				beego.NSRouter("/category_add", &admin.ManageController{},"get:Category_add"),
 				beego.NSRouter("/config", &admin.ManageController{},"get:Config"),
