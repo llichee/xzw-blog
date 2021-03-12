@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="2;url={{.rediect}}">
     <title>Title</title>
 </head>
 <body>
-    验证码错误
+<div class="container-fluid">
+    <div class="container" style="width: 480px; margin-top: 100px;">
+        <div class="alert alert-success">
+            <h2>操作失败-{{.message}}</h2> <br />
+            <p>如果您不做出选择，将在2秒后跳转到上一个链接地址</p> <br />
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
