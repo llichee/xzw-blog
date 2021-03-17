@@ -1,24 +1,34 @@
 package utils
 
-import "xzw-blog/models"
+import (
+	"fmt"
+	"xzw-blog/models"
+)
 
 func GetUserByname(username string) *models.User {
 	var u = new(models.User)
 	models.DB.Find(&u, "username=?", username)
+	fmt.Println("+++++++++++")
+	fmt.Println(u)
+	fmt.Println("+++++++++++")
 	if u != nil {
 		return u
+	} else {
+		return nil
 	}
-	return nil
 }
 
-func Auth(username, password string) *models.User {
-	if user := GetUserByname(username); user == nil {
-		return nil
+func Auth(username, password string) bool {
+	if u := GetUserByname(username); u.Username == "" {
+		fmt.Println("=====")
+		fmt.Println(u)
+		fmt.Println("=====")
+		return false
 	} else {
-		if user.Password == password {
-			return user
+		if u.Password == password {
+			return true
 		} else {
-			return nil
+			return false
 		}
 	}
 }

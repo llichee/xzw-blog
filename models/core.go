@@ -2,9 +2,9 @@ package models
 
 import (
 	"fmt"
-	"time"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"time"
 )
 
 var DB *gorm.DB

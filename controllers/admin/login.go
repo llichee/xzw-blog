@@ -1,9 +1,11 @@
 package admin
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/utils/captcha"
 	"xzw-blog/forms"
+	"xzw-blog/utils"
 )
 
 var cpt *captcha.Captcha
@@ -28,11 +30,16 @@ func (c *LoginController) DoLogin() {
 	flag := cpt.VerifyReq(c.Ctx.Request)
 	var form forms.UserInfo
 	c.ParseForm(&form)
+	fmt.Println("xxxxxxxxxxxxxxxxxxx")
+	fmt.Println(form.Username,form.Password)
+	fmt.Println("xxxxxxxxxxxxxxxxxxx")
 //调utils方法，认证 username 和 password，判断表单提交的用户信息的准确性
-	if flag {
-		c.Success("验证码正确", "/admin/main")
+	ret := utils.Auth(form.Username, form.Password)
+	fmt.Println(ret)
+	if flag && ret == true {
+		c.Success("验证通过", "/admin/main")
 	} else {
-		c.Error("验证码错误", "/admin/login")
+		c.Error("验证失败", "/admin/login")
 	}
 }
 
