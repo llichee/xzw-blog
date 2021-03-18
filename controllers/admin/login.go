@@ -30,9 +30,6 @@ func (c *LoginController) DoLogin() {
 	flag := cpt.VerifyReq(c.Ctx.Request)
 	var form forms.UserInfo
 	c.ParseForm(&form)
-	fmt.Println("xxxxxxxxxxxxxxxxxxx")
-	fmt.Println(form.Username,form.Password)
-	fmt.Println("xxxxxxxxxxxxxxxxxxx")
 //调utils方法，认证 username 和 password，判断表单提交的用户信息的准确性
 	ret := utils.Auth(form.Username, form.Password)
 	fmt.Println(ret)

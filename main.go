@@ -9,12 +9,14 @@ import (
 )
 
 func main() {
+	def_pwd := "hengda888"
+	var md5_def_pwd = utils.Md5(def_pwd)
 	models.DB.AutoMigrate(models.User{})
 	if u:=utils.GetUserByname("hdadmin"); u.Username == "" {
 		user := models.User{
 			ID:        0,
 			Username:  "hdadmin",
-			Password:  "hengda888",
+			Password:  md5_def_pwd,
 			CreatedAt: nil,
 			UpdatedAt: nil,
 			DeletedAt: nil,
