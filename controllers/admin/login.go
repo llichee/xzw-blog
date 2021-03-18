@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/utils/captcha"
 	"xzw-blog/forms"
@@ -30,14 +29,19 @@ func (c *LoginController) DoLogin() {
 	flag := cpt.VerifyReq(c.Ctx.Request)
 	var form forms.UserInfo
 	c.ParseForm(&form)
-//调utils方法，认证 username 和 password，判断表单提交的用户信息的准确性
-	ret := utils.Auth(form.Username, form.Password)
-	fmt.Println(ret)
-	if flag && ret == true {
-		c.Success("验证通过", "/admin/main")
+	//调utils方法，认证 username 和 password，判断表单提交的用户信息的准确性
+	num, userinfo := utils.Auth(form.Username, form.Password)
+	if flag {
+		if num > 0 {
+			c.SetSession("userinfo", userinfo)
+			c.Success("登陆成功", "/admin/main")
+		} else {
+			c.Error("用户名或密码错误", "/admin/login")
+		}
 	} else {
-		c.Error("验证失败", "/admin/login")
+		c.Error("验证码错误", "/admin/login")
 	}
+
 }
 
 func (c *LoginController) Form() {

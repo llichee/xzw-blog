@@ -14,14 +14,8 @@ func GetUserByname(username string) *models.User {
 	}
 }
 
-func Auth(username, password string) bool {
-	if u := GetUserByname(username); u.Username == "" {
-		return false
-	} else {
-		if u.Password == Md5(password) {
-			return true
-		} else {
-			return false
-		}
-	}
+func Auth(username, password string) (int, *models.User) {
+	u := []models.User{}
+	models.DB.Where("username=? AND password=?", username, Md5(password)).Find(&u)
+	return len(u), &u[0]
 }

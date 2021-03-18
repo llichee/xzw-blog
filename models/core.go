@@ -20,8 +20,8 @@ type User struct {
 }
 
 func init() {
-	DB, err = gorm.Open("mysql", "root:hengda888@/db_blog?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
+	DB, err = gorm.Open("mysql", "root:123456@/db_blog?charset=utf8&parseTime=True&loc=Local")
+		if err != nil {
 		panic(err)
 	} else {
 		fmt.Println("数据库连接成功!")
