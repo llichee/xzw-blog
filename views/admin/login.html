@@ -22,7 +22,7 @@
 <body>
 <script type="text/javascript" src="/static/plug/layui/layui.js"></script>
 <div class="main layui-clear">
-    <form action="/admin/login/dologin" method="post">
+    <form action="/{{config "String" "adminPath" ""}}/login/dologin" method="post">
         <div class="fly-panel fly-panel-user" pad20>
             <div class="layui-tab layui-tab-brief">
                 <ul class="layui-tab-title">
@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+    </form>
 </div>
 </form>
 </div>

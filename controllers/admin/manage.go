@@ -1,9 +1,19 @@
 package admin
 
-import "github.com/astaxie/beego"
+import (
+	"fmt"
+)
 
 type ManageController struct {
-	beego.Controller
+	BaseController
+}
+
+func (c *ManageController) Get() {
+	userinfo:=c.GetSession("userinfo")
+	fmt.Printf("11111111111111")
+	fmt.Printf("%#v",userinfo)
+
+	c.TplName = "admin/main.html"
 }
 
 func (c *ManageController) Form() {
@@ -26,6 +36,4 @@ func (c *ManageController) List() {
 	c.TplName = "admin/list.tpl"
 }
 
-func (c *ManageController) Main() {
-	c.TplName = "admin/main.tpl"
-}
+
